@@ -18,7 +18,7 @@ class NewsApiPage extends StatefulWidget {
 class _NewsApiPageState extends State<NewsApiPage> {
   final Connectivity _connectivity = Connectivity();
   StreamSubscription<ConnectivityResult>? connectivitySubscription;
-  bool isConnected = true;
+  bool isConnected = false;
   ConnectivityResult connectivityResult = ConnectivityResult.none;
   @override
   void initState() {
