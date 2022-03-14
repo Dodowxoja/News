@@ -1,9 +1,4 @@
-// ignore_for_file: prefer_is_empty
-
 import 'package:flutter/material.dart';
-import 'package:home/core/constants/api_https_const.dart';
-import 'package:home/models/news_model.dart';
-import 'package:home/service/apple_api_service.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -13,14 +8,6 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  // List<dynamic> dataApi = [
-  //   AppleApiService.getData(),
-  //   AppleApiService.getData(),
-  //   AppleApiService.getData(),
-  //   AppleApiService.getData(),
-  //   AppleApiService.getData(),
-  // ];
-
   Set<String> searchedItems = {};
   final TextEditingController _textController = TextEditingController();
 

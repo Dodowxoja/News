@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 NewsApiPage(
                   future: TechApiService.getData(),
                   box: TechApiService.myBox4!,
-                  newsTabName: 'Tech',
+                  newsTabName: 'TechCrunch',
                 ),
                 NewsApiPage(
                   future: WsjApiService.getData(),
