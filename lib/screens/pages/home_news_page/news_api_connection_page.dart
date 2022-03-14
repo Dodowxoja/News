@@ -51,24 +51,27 @@ class _NewsApiConnectionPageState extends State<NewsApiConnectionPage> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          widget.box
-                                              .getAt(__)!
-                                              .author
-                                              .toString(),
+                                          widget.box.getAt(__)!.title ??
+                                              "Xo'ja",
                                           textAlign: TextAlign.start,
                                           overflow: TextOverflow.ellipsis,
-                                          maxLines: 4,
+                                          maxLines: 3,
                                         ),
                                         const SizedBox(height: 10),
-                                        Text(widget.box.getAt(__)!.author ??
-                                            'dodow'),
+                                        Text(
+                                          widget.box.getAt(__)!.author ??
+                                              'Dodow',
+                                          textAlign: TextAlign.start,
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 3,
+                                        ),
                                       ],
                                     ),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        const Text('News'),
+                                        Text(widget.newsTabName),
                                         const CircleAvatar(
                                           radius: 3,
                                           backgroundColor: Colors.grey,

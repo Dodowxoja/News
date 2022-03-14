@@ -106,7 +106,7 @@ class _NewsApiPageState extends State<NewsApiPage> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                const Text('Apple'),
+                                                Text(widget.newsTabName),
                                                 const CircleAvatar(
                                                   radius: 3,
                                                   backgroundColor: Colors.grey,

@@ -71,14 +71,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       body: Column(
         children: [
           Expanded(
-              child: ListView.builder(
-            itemBuilder: (_, __) {
-              return Text(
-                  AppleApiService.myBox1!.getAt(__)!.author ?? 'no Data');
-            },
-            itemCount: AppleApiService.myBox1!.length,
-          )),
-          Expanded(
             child: TabBarView(
               controller: _tabController,
               children: [
