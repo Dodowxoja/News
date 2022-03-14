@@ -1,9 +1,16 @@
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:home/core/constants/api_https_const.dart';
 import 'package:home/core/constants/color_const.dart';
 import 'package:home/screens/pages/home_news_page/news_api_page.dart';
-import 'package:home/service/api_service.dart';
+import 'package:home/service/apple_api_service.dart';
+import 'package:home/service/business_api_service.dart';
+import 'package:home/service/tech_api_service.dart';
+import 'package:home/service/tesla_api_service.dart';
+import 'package:home/service/wsj_api_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,6 +21,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   TabController? _tabController;
+  StreamSubscription<ConnectivityResult>? connectivitySubscription;
   @override
   void initState() {
     super.initState();
@@ -60,16 +68,51 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           ],
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
+      body: Column(
         children: [
-          NewsApiPage(future: ApiService.getData(ApiHttpsConst.httpsApis2[0])),
-          NewsApiPage(future: ApiService.getData(ApiHttpsConst.httpsApis2[1])),
-          NewsApiPage(future: ApiService.getData(ApiHttpsConst.httpsApis2[2])),
-          NewsApiPage(future: ApiService.getData(ApiHttpsConst.httpsApis2[3])),
-          NewsApiPage(future: ApiService.getData(ApiHttpsConst.httpsApis2[4])),
+          Expanded(
+              child: ListView.builder(
+            itemBuilder: (_, __) {
+              return Text(
+                  AppleApiService.myBox1!.getAt(__)!.author ?? 'no Data');
+            },
+            itemCount: AppleApiService.myBox1!.length,
+          )),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                NewsApiPage(
+                  future: AppleApiService.getData(),
+                  box: AppleApiService.myBox1!,
+                ),
+                NewsApiPage(
+                  future: TeslaApiService.getData(),
+                  box: TeslaApiService.myBox2!,
+                ),
+                NewsApiPage(
+                  future: BusinessApiService.getData(),
+                  box: BusinessApiService.myBox3!,
+                ),
+                NewsApiPage(
+                  future: TechApiService.getData(),
+                  box: TechApiService.myBox4!,
+                ),
+                NewsApiPage(
+                  future: WsjApiService.getData(),
+                  box: WsjApiService.myBox5!,
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    connectivitySubscription!.cancel();
   }
 }

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:home/models/news_model.dart';
 import 'package:home/service/api_service.dart';
+import 'package:home/service/apple_api_service.dart';
 
 class NewsApiConnectionPage extends StatefulWidget {
-  const NewsApiConnectionPage({Key? key}) : super(key: key);
+  NewsApiConnectionPage({required this.box, Key? key}) : super(key: key);
+  Box<Article> box;
 
   @override
   State<NewsApiConnectionPage> createState() => _NewsApiConnectionPageState();
@@ -11,9 +15,8 @@ class NewsApiConnectionPage extends StatefulWidget {
 class _NewsApiConnectionPageState extends State<NewsApiConnectionPage> {
   @override
   Widget build(BuildContext context) {
-    return ApiService.myBox1!.isEmpty
-        ? const Center(child: Text('Please check your connection'))
-        : Column(
+    return AppleApiService.myBox1!.isNotEmpty
+        ? Column(
             children: [
               const Text("Connecting"),
               Expanded(
@@ -30,16 +33,7 @@ class _NewsApiConnectionPageState extends State<NewsApiConnectionPage> {
                               Container(
                                 height: 140,
                                 width: 137,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: NetworkImage(ApiService.myBox1!
-                                        .getAt(__)!
-                                        // .articles![__]
-                                        .urlToImage
-                                        .toString()),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
+                                color: Colors.red,
                               ),
                               const SizedBox(width: 10),
                               SizedBox(
@@ -54,15 +48,17 @@ class _NewsApiConnectionPageState extends State<NewsApiConnectionPage> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "${ApiService.myBox1!.getAt(__)!.author}", //.articles![__]
+                                          AppleApiService.myBox1!
+                                              .getAt(__)!
+                                              .author
+                                              .toString(),
                                           textAlign: TextAlign.start,
                                           overflow: TextOverflow.ellipsis,
                                           maxLines: 4,
                                         ),
                                         const SizedBox(height: 10),
-                                        Text(ApiService.myBox1!
+                                        Text(AppleApiService.myBox1!
                                                 .getAt(__)!
-                                                // .articles![__]
                                                 .author ??
                                             'dodow'),
                                       ],
@@ -76,15 +72,12 @@ class _NewsApiConnectionPageState extends State<NewsApiConnectionPage> {
                                           radius: 3,
                                           backgroundColor: Colors.grey,
                                         ),
-                                        Text(
-                                          ApiService.myBox1!
-                                                  .getAt(__)!
-                                                  // .articles![__]
-                                                  .publishedAt
-                                                  .toString()
-                                                  .substring(10, 16) +
-                                              'hr ago',
-                                        ),
+                                        Text(AppleApiService.myBox1!
+                                                .getAt(__)!
+                                                .publishedAt
+                                                .toString()
+                                                .substring(10, 16) +
+                                            'hr ago'),
                                         IconButton(
                                           icon: const Icon(Icons.more_horiz),
                                           onPressed: () {},
@@ -104,6 +97,7 @@ class _NewsApiConnectionPageState extends State<NewsApiConnectionPage> {
                 ),
               ),
             ],
-          );
+          )
+        : const Center(child: Text('Please check your connection'));
   }
 }
