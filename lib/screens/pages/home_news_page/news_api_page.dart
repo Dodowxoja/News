@@ -7,10 +7,15 @@ import 'package:home/screens/pages/home_news_page/news_api_connection_page.dart'
 import 'package:home/service/apple_api_service.dart';
 
 class NewsApiPage extends StatefulWidget {
-  NewsApiPage({required this.future, required this.box, Key? key})
+  NewsApiPage(
+      {required this.future,
+      required this.box,
+      required this.newsTabName,
+      Key? key})
       : super(key: key);
   Future future;
   Box<Article> box;
+  String newsTabName;
   @override
   State<NewsApiPage> createState() => _NewsApiPageState();
 }
@@ -138,18 +143,21 @@ class _NewsApiPageState extends State<NewsApiPage> {
               }
             },
           )
-        : Center(
-            child: SizedBox(
-                child: ListView.builder(
-              itemBuilder: (_, __) {
-                print('HELLO');
-                return Text(
-                    AppleApiService.myBox1!.getAt(__)!.author ?? 'no Data');
-              },
-              itemCount: AppleApiService.myBox1!.length,
-            )),
+
+        //: Center(
+        //     child: SizedBox(
+        //         child: ListView.builder(
+        //       itemBuilder: (_, __) {
+        //         print('HELLO');
+        //         return Text(widget.box.getAt(__)!.author ?? 'no Data');
+        //       },
+        //       itemCount: widget.box.length,
+        //     )),
+        //   );
+        : NewsApiConnectionPage(
+            box: widget.box,
+            newsTabName: widget.newsTabName,
           );
-    // : NewsApiConnectionPage(box: widget.box);
     // : Scaffold(
     //     body: //widget.box.isNotEmpty
     //         //?

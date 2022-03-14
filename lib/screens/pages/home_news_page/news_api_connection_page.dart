@@ -5,8 +5,11 @@ import 'package:home/service/api_service.dart';
 import 'package:home/service/apple_api_service.dart';
 
 class NewsApiConnectionPage extends StatefulWidget {
-  NewsApiConnectionPage({required this.box, Key? key}) : super(key: key);
+  NewsApiConnectionPage(
+      {required this.box, required this.newsTabName, Key? key})
+      : super(key: key);
   Box<Article> box;
+  String newsTabName;
 
   @override
   State<NewsApiConnectionPage> createState() => _NewsApiConnectionPageState();
@@ -48,7 +51,7 @@ class _NewsApiConnectionPageState extends State<NewsApiConnectionPage> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          AppleApiService.myBox1!
+                                          widget.box
                                               .getAt(__)!
                                               .author
                                               .toString(),
@@ -57,9 +60,7 @@ class _NewsApiConnectionPageState extends State<NewsApiConnectionPage> {
                                           maxLines: 4,
                                         ),
                                         const SizedBox(height: 10),
-                                        Text(AppleApiService.myBox1!
-                                                .getAt(__)!
-                                                .author ??
+                                        Text(widget.box.getAt(__)!.author ??
                                             'dodow'),
                                       ],
                                     ),
@@ -67,12 +68,12 @@ class _NewsApiConnectionPageState extends State<NewsApiConnectionPage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        const Text('Apple'),
+                                        const Text('News'),
                                         const CircleAvatar(
                                           radius: 3,
                                           backgroundColor: Colors.grey,
                                         ),
-                                        Text(AppleApiService.myBox1!
+                                        Text(widget.box
                                                 .getAt(__)!
                                                 .publishedAt
                                                 .toString()
@@ -93,7 +94,7 @@ class _NewsApiConnectionPageState extends State<NewsApiConnectionPage> {
                       ),
                     );
                   },
-                  itemCount: ApiService.myBox1!.length,
+                  itemCount: widget.box.length,
                 ),
               ),
             ],

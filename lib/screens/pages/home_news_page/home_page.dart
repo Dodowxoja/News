@@ -85,22 +85,27 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 NewsApiPage(
                   future: AppleApiService.getData(),
                   box: AppleApiService.myBox1!,
+                  newsTabName: 'Apple',
                 ),
                 NewsApiPage(
                   future: TeslaApiService.getData(),
                   box: TeslaApiService.myBox2!,
+                  newsTabName: 'Tesla',
                 ),
                 NewsApiPage(
                   future: BusinessApiService.getData(),
                   box: BusinessApiService.myBox3!,
+                  newsTabName: 'Business',
                 ),
                 NewsApiPage(
                   future: TechApiService.getData(),
                   box: TechApiService.myBox4!,
+                  newsTabName: 'Tech',
                 ),
                 NewsApiPage(
                   future: WsjApiService.getData(),
                   box: WsjApiService.myBox5!,
+                  newsTabName: 'WSJ',
                 ),
               ],
             ),
