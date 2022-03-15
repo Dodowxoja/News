@@ -3,8 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:home/core/constants/svg_icons.dart';
 import 'package:home/screens/pages/bookmark_page/bookmark_page.dart';
 import 'package:home/screens/pages/home_news_page/home_page.dart';
-import 'package:home/screens/pages/search_page/search_list_page.dart';
-// import 'package:home/screens/pages/search_page/1.dart';
+import 'package:home/screens/pages/search_page/serach_page.dart';
 import 'package:home/screens/pages/setting_page/setting_page.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -17,8 +16,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   final List _pages = const [
     HomePage(),
-    // SearchPage(),
-    SearchListPage(),
+    SearchPage(),
+    // SearchListPage(),
     BookMarkPage(),
     SettingPage()
   ];

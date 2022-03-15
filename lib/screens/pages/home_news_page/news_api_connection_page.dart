@@ -20,7 +20,21 @@ class _NewsApiConnectionPageState extends State<NewsApiConnectionPage> {
     return AppleApiService.myBox1!.isNotEmpty
         ? Column(
             children: [
-              const Text("Connecting"),
+              SizedBox(
+                height: 20,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text("Connecting..."),
+                    SizedBox(
+                      height: 15,
+                      width: 15,
+                      child: CircularProgressIndicator.adaptive(strokeWidth: 1),
+                    )
+                  ],
+                ),
+              ),
               Expanded(
                 child: ListView.builder(
                   itemBuilder: (_, __) {
@@ -35,7 +49,13 @@ class _NewsApiConnectionPageState extends State<NewsApiConnectionPage> {
                               Container(
                                 height: 140,
                                 width: 137,
-                                color: Colors.red,
+                                color: Colors.grey.shade200,
+                                alignment: Alignment.center,
+                                child: const Text(
+                                  'Connecting Image',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontSize: 20),
+                                ),
                               ),
                               const SizedBox(width: 10),
                               SizedBox(

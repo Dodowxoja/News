@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:home/core/constants/color_const.dart';
 import 'package:home/screens/pages/home_news_page/news_api_page.dart';
+import 'package:home/screens/pages/search_page/search_list_page.dart';
 import 'package:home/service/apple_api_service.dart';
 import 'package:home/service/business_api_service.dart';
 import 'package:home/service/tech_api_service.dart';
@@ -72,29 +73,24 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
             child: TabBarView(
               controller: _tabController,
               children: [
-                NewsApiPage(
+                SearchListPage(
                   future: AppleApiService.getData(),
-                  box: AppleApiService.myBox1!,
                   newsTabName: 'Apple',
                 ),
-                NewsApiPage(
+                SearchListPage(
                   future: TeslaApiService.getData(),
-                  box: TeslaApiService.myBox2!,
                   newsTabName: 'Tesla',
                 ),
-                NewsApiPage(
+                SearchListPage(
                   future: BusinessApiService.getData(),
-                  box: BusinessApiService.myBox3!,
                   newsTabName: 'Business',
                 ),
-                NewsApiPage(
+                SearchListPage(
                   future: TechApiService.getData(),
-                  box: TechApiService.myBox4!,
                   newsTabName: 'TechCrunch',
                 ),
-                NewsApiPage(
+                SearchListPage(
                   future: WsjApiService.getData(),
-                  box: WsjApiService.myBox5!,
                   newsTabName: 'WSJ',
                 ),
               ],

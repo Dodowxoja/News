@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:home/models/news_model.dart';
-import 'package:home/service/apple_api_service.dart';
 
 class SearchListPage extends StatefulWidget {
-  const SearchListPage({Key? key}) : super(key: key);
+  SearchListPage({required this.future, required this.newsTabName, Key? key})
+      : super(key: key);
+  Future<NewsModel> future;
+
+  String newsTabName;
 
   @override
   State<SearchListPage> createState() => _SearchListPageState();
 }
 
 class _SearchListPageState extends State<SearchListPage> {
-  List<NewsModel> searchedItems = [];
+  List<Article> searchedItems = [];
   final TextEditingController _textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Search')),
       body: SafeArea(
         child: FutureBuilder(
-          future: AppleApiService.getData(),
+          future: widget.future,
           builder: (_, AsyncSnapshot<NewsModel> snap) {
             if (!snap.hasData) {
-              return const Center(child: Text('No data'));
+              return const Center(child: CircularProgressIndicator.adaptive());
             } else if (snap.hasError) {
               return const Center(child: Text('Error'));
             } else {
@@ -38,6 +40,7 @@ class _SearchListPageState extends State<SearchListPage> {
                         scrollController: ScrollController(),
                         controller: _textController,
                         decoration: InputDecoration(
+                          floatingLabelAlignment: FloatingLabelAlignment.center,
                           fillColor: const Color(0xffEEEEEE),
                           hintText: "Search",
                           suffixIcon: IconButton(
@@ -59,12 +62,11 @@ class _SearchListPageState extends State<SearchListPage> {
                             if (v.length == 0) {
                               searchedItems.clear();
                               setState(() {});
-                            } else if (data.articles![i].title
+                            } else if (data.articles![i].author
                                 .toString()
                                 .toLowerCase()
                                 .contains(v.toString().toLowerCase())) {
-                              searchedItems.add(data);
-                              print(data.articles![i].title);
+                              searchedItems.add(data.articles![i]);
                               setState(() {});
                             }
                           }
@@ -92,9 +94,7 @@ class _SearchListPageState extends State<SearchListPage> {
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
                                           image: NetworkImage(
-                                            searchedItems[__]
-                                                    .articles![__]
-                                                    .urlToImage ??
+                                            searchedItems[__].urlToImage ??
                                                 'https://source.unsplash.com/random',
                                           ),
                                           fit: BoxFit.cover,
@@ -115,7 +115,6 @@ class _SearchListPageState extends State<SearchListPage> {
                                             children: [
                                               Text(
                                                 searchedItems[__]
-                                                    .articles![__]
                                                     .title
                                                     .toString(),
                                                 textAlign: TextAlign.start,
@@ -125,7 +124,7 @@ class _SearchListPageState extends State<SearchListPage> {
                                               const SizedBox(height: 10),
                                               Text(
                                                 searchedItems[__]
-                                                        .articles![__]
+                                                        // .articles![__]
                                                         .author ??
                                                     'Dodow',
                                               ),
@@ -135,14 +134,14 @@ class _SearchListPageState extends State<SearchListPage> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              const Text('News'),
+                                              Text(widget.newsTabName),
                                               const CircleAvatar(
                                                 radius: 3,
                                                 backgroundColor: Colors.grey,
                                               ),
                                               Text(
                                                 searchedItems[__]
-                                                        .articles![__]
+                                                        // .articles![__]
                                                         .publishedAt!
                                                         .toString()
                                                         .substring(10, 16) +

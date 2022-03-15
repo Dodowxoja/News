@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:animate_do/animate_do.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -12,7 +13,7 @@ class NewsApiPage extends StatefulWidget {
       required this.newsTabName,
       Key? key})
       : super(key: key);
-  Future future;
+  Future<NewsModel> future;
   Box<Article> box;
   String newsTabName;
   @override
@@ -22,7 +23,7 @@ class NewsApiPage extends StatefulWidget {
 class _NewsApiPageState extends State<NewsApiPage> {
   final Connectivity _connectivity = Connectivity();
   StreamSubscription<ConnectivityResult>? connectivitySubscription;
-  bool isConnected = false;
+  bool isConnected = true;
   ConnectivityResult connectivityResult = ConnectivityResult.none;
   @override
   void initState() {
@@ -35,7 +36,7 @@ class _NewsApiPageState extends State<NewsApiPage> {
     return isConnected
         ? FutureBuilder(
             future: widget.future,
-            builder: (_, AsyncSnapshot snap) {
+            builder: (_, AsyncSnapshot<NewsModel> snap) {
               if (!snap.hasData) {
                 return const Center(
                     child: CircularProgressIndicator.adaptive());
@@ -48,88 +49,90 @@ class _NewsApiPageState extends State<NewsApiPage> {
                       Expanded(
                         child: ListView.builder(
                           itemBuilder: (_, __) {
-                            return Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        height: 140,
-                                        width: 137,
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                            image: NetworkImage(
-                                              snap.data!.articles![__]
-                                                      .urlToImage ??
-                                                  'https://source.unsplash.com/random',
-                                            ),
+                            return FadeInLeftBig(
+                              child: Padding(
+                                padding: const EdgeInsets.all(16),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        SizedBox(
+                                          height: 140,
+                                          width: 137,
+                                          child: FadeInImage.assetNetwork(
+                                            placeholder:
+                                                'assets/gifs/loading.gif',
+                                            image: snap.data!.articles![__]
+                                                    .urlToImage ??
+                                                'https://source.unsplash.com/random',
                                             fit: BoxFit.cover,
                                           ),
                                         ),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      SizedBox(
-                                        height: 166,
-                                        width: 232.4,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  snap.data!.articles![__].title
-                                                      .toString(),
-                                                  textAlign: TextAlign.start,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  maxLines: 4,
-                                                ),
-                                                const SizedBox(height: 10),
-                                                Text(
-                                                  snap.data!.articles![__]
-                                                          .author ??
-                                                      'Dodow',
-                                                ),
-                                              ],
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(widget.newsTabName),
-                                                const CircleAvatar(
-                                                  radius: 3,
-                                                  backgroundColor: Colors.grey,
-                                                ),
-                                                Text(
-                                                  snap.data!.articles![__]
-                                                          .publishedAt!
-                                                          .toString()
-                                                          .substring(10, 16) +
-                                                      'hr ago',
-                                                ),
-                                                IconButton(
-                                                  icon: const Icon(
-                                                      Icons.more_horiz),
-                                                  onPressed: () {},
-                                                )
-                                              ],
-                                            ),
-                                          ],
+                                        const SizedBox(width: 10),
+                                        SizedBox(
+                                          height: 166,
+                                          width: 232.4,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    snap.data!.articles![__]
+                                                        .title
+                                                        .toString(),
+                                                    textAlign: TextAlign.start,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    maxLines: 4,
+                                                  ),
+                                                  const SizedBox(height: 10),
+                                                  Text(
+                                                    snap.data!.articles![__]
+                                                            .author ??
+                                                        'Dodow',
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(widget.newsTabName),
+                                                  const CircleAvatar(
+                                                    radius: 3,
+                                                    backgroundColor:
+                                                        Colors.grey,
+                                                  ),
+                                                  Text(
+                                                    snap.data!.articles![__]
+                                                            .publishedAt!
+                                                            .toString()
+                                                            .substring(10, 16) +
+                                                        'hr ago',
+                                                  ),
+                                                  IconButton(
+                                                    icon: const Icon(
+                                                        Icons.more_horiz),
+                                                    onPressed: () {},
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             );
                           },
