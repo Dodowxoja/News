@@ -13,7 +13,6 @@ class AppleApiService {
     await openBox();
     Response res = await Dio().get(ApiHttpsConst.httpsApis3[0]);
     await putData(NewsModel.fromJson(res.data));
-
     return NewsModel.fromJson(res.data);
   }
 
@@ -36,11 +35,3 @@ class AppleApiService {
     }
   }
 }
-
-//   // await putMyOnlineData(res.data['articles']);
-
-  // static putMyOnlineData(var data) async {
-  //   for (var item in data) {
-  //     myAllOnlineData.add(item);
-  //   }
-  // }

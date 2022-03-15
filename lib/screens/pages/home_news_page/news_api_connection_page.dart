@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:home/models/news_model.dart';
-import 'package:home/service/api_service.dart';
 import 'package:home/service/apple_api_service.dart';
 
 class NewsApiConnectionPage extends StatefulWidget {

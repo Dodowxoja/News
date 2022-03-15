@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:home/core/constants/api_https_const.dart';
@@ -30,8 +29,7 @@ class TechApiService {
   }
 
   static putData(NewsModel data) async {
-    myBox4!.clear();
-
+    await myBox4!.clear();
     for (var item in data.articles!) {
       myBox4!.add(item);
     }

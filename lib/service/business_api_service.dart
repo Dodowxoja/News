@@ -30,7 +30,7 @@ class BusinessApiService {
   }
 
   static putData(NewsModel data) async {
-    myBox3!.clear();
+    await myBox3!.clear();
     for (var item in data.articles!) {
       myBox3!.add(item);
     }

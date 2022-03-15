@@ -10,23 +10,19 @@ import 'package:home/service/tech_api_service.dart';
 import 'package:home/service/tesla_api_service.dart';
 import 'package:home/service/wsj_api_service.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class SearchPage extends StatefulWidget {
+  const SearchPage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<SearchPage> createState() => _SearchPageState();
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
   TabController? _tabController;
-  final Connectivity _connectivity = Connectivity();
   StreamSubscription<ConnectivityResult>? connectivitySubscription;
-  bool isConnected = false;
-  ConnectivityResult connectivityResult = ConnectivityResult.none;
   @override
   void initState() {
     super.initState();
-    checkConnection();
     _tabController = TabController(length: 5, vsync: this);
   }
 
@@ -109,24 +105,18 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 
-  checkConnection() {
-    connectivitySubscription =
-        _connectivity.onConnectivityChanged.listen((event) {
-      if (event == ConnectivityResult.wifi ||
-          event == ConnectivityResult.mobile) {
-        //widget.future;
-        isConnected = true;
-        setState(() {});
-      } else {
-        isConnected = false;
-        setState(() {});
-      }
-    });
-  }
-
   @override
   void dispose() {
     super.dispose();
     connectivitySubscription!.cancel();
   }
 }
+
+
+/*
+AppleApiService.getData(),
+          TeslaApiService.getData),
+          BusinessApiService.getData(),
+          TechApiService.getData(),
+          WsjApiService.getData(),
+*/

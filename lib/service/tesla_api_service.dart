@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:home/core/constants/api_https_const.dart';
@@ -30,8 +29,7 @@ class TeslaApiService {
   }
 
   static putData(NewsModel data) async {
-    myBox2!.clear();
-
+    await myBox2!.clear();
     for (var item in data.articles!) {
       myBox2!.add(item);
     }

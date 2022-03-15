@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:home/core/constants/api_https_const.dart';
@@ -30,7 +29,7 @@ class WsjApiService {
   }
 
   static putData(NewsModel data) async {
-    myBox5!.clear();
+    await myBox5!.clear();
     for (var item in data.articles!) {
       myBox5!.add(item);
     }
