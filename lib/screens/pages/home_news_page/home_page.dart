@@ -114,7 +114,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         _connectivity.onConnectivityChanged.listen((event) {
       if (event == ConnectivityResult.wifi ||
           event == ConnectivityResult.mobile) {
-        //widget.future;
         isConnected = true;
         setState(() {});
       } else {

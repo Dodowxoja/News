@@ -11,7 +11,7 @@ class TechApiService {
 
   static Future<NewsModel> getData() async {
     await openBox();
-    Response res = await Dio().get(ApiHttpsConst.httpsApis3[3]);
+    Response res = await Dio().get(ApiHttpsConst.httpsApis1[3]);
     await putData(NewsModel.fromJson(res.data));
     return NewsModel.fromJson(res.data);
   }

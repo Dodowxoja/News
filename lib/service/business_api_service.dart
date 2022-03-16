@@ -12,7 +12,7 @@ class BusinessApiService {
 
   static Future<NewsModel> getData() async {
     await openBox();
-    Response res = await Dio().get(ApiHttpsConst.httpsApis3[2]);
+    Response res = await Dio().get(ApiHttpsConst.httpsApis1[2]);
     await putData(NewsModel.fromJson(res.data));
     return NewsModel.fromJson(res.data);
   }

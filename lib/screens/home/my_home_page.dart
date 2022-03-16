@@ -17,7 +17,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   final List _pages = const [
     HomePage(),
     SearchPage(),
-    // SearchListPage(),
     BookMarkPage(),
     SettingPage()
   ];

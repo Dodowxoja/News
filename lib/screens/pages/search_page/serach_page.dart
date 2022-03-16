@@ -3,7 +3,6 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:home/core/constants/color_const.dart';
-import 'package:home/screens/pages/home_news_page/news_api_page.dart';
 import 'package:home/screens/pages/search_page/search_list_page.dart';
 import 'package:home/service/apple_api_service.dart';
 import 'package:home/service/business_api_service.dart';
@@ -34,15 +33,12 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        title: SvgPicture.asset('assets/icons/title.svg'),
+        title: const Text('Search', style: TextStyle(color: Colors.black)),
         actions: [
-          InkWell(
-            onTap: () {},
-            child: Container(
-              padding: const EdgeInsets.only(right: 16),
-              alignment: Alignment.center,
-              child: SvgPicture.asset('assets/icons/notification_black.svg'),
-            ),
+          Container(
+            padding: const EdgeInsets.only(right: 16),
+            alignment: Alignment.center,
+            child: SvgPicture.asset('assets/icons/title.svg'),
           ),
         ],
         bottom: TabBar(
@@ -102,17 +98,8 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
   }
 
   @override
-  void dispose() {
+  void dispose() async {
     super.dispose();
-    connectivitySubscription!.cancel();
+    await connectivitySubscription!.cancel();
   }
 }
-
-
-/*
-AppleApiService.getData(),
-          TeslaApiService.getData),
-          BusinessApiService.getData(),
-          TechApiService.getData(),
-          WsjApiService.getData(),
-*/

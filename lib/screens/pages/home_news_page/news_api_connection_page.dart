@@ -1,3 +1,4 @@
+// ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:home/models/news_model.dart';
@@ -31,7 +32,7 @@ class _NewsApiConnectionPageState extends State<NewsApiConnectionPage> {
                       height: 15,
                       width: 15,
                       child: CircularProgressIndicator.adaptive(strokeWidth: 1),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -59,7 +60,7 @@ class _NewsApiConnectionPageState extends State<NewsApiConnectionPage> {
                               ),
                               const SizedBox(width: 10),
                               SizedBox(
-                                height: 166,
+                                height: 140,
                                 width: 232.4,
                                 child: Column(
                                   mainAxisAlignment:

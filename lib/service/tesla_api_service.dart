@@ -11,7 +11,7 @@ class TeslaApiService {
 
   static Future<NewsModel> getData() async {
     await openBox();
-    Response res = await Dio().get(ApiHttpsConst.httpsApis3[1]);
+    Response res = await Dio().get(ApiHttpsConst.httpsApis1[1]);
     await putData(NewsModel.fromJson(res.data));
     return NewsModel.fromJson(res.data);
   }

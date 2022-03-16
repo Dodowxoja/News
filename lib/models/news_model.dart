@@ -1,3 +1,4 @@
+// ignore_for_file: prefer_if_null_operators
 import 'package:hive/hive.dart';
 part 'news_model.g.dart';
 

@@ -1,3 +1,4 @@
+// ignore_for_file: body_might_complete_normally_nullable
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:home/core/constants/color_const.dart';

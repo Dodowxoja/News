@@ -1,3 +1,4 @@
+// ignore_for_file: must_be_immutable, prefer_is_empty
 import 'package:flutter/material.dart';
 import 'package:home/models/news_model.dart';
 
@@ -24,7 +25,15 @@ class _SearchListPageState extends State<SearchListPage> {
           future: widget.future,
           builder: (_, AsyncSnapshot<NewsModel> snap) {
             if (!snap.hasData) {
-              return const Center(child: CircularProgressIndicator.adaptive());
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text('Connecting'),
+                    CircularProgressIndicator.adaptive(),
+                  ],
+                ),
+              );
             } else if (snap.hasError) {
               return const Center(child: Text('Error'));
             } else {
@@ -103,7 +112,7 @@ class _SearchListPageState extends State<SearchListPage> {
                                     ),
                                     const SizedBox(width: 10),
                                     SizedBox(
-                                      height: 166,
+                                      height: 146,
                                       width: 232.4,
                                       child: Column(
                                         mainAxisAlignment:
@@ -123,9 +132,7 @@ class _SearchListPageState extends State<SearchListPage> {
                                               ),
                                               const SizedBox(height: 10),
                                               Text(
-                                                searchedItems[__]
-                                                        // .articles![__]
-                                                        .author ??
+                                                searchedItems[__].author ??
                                                     'Dodow',
                                               ),
                                             ],
@@ -141,7 +148,6 @@ class _SearchListPageState extends State<SearchListPage> {
                                               ),
                                               Text(
                                                 searchedItems[__]
-                                                        // .articles![__]
                                                         .publishedAt!
                                                         .toString()
                                                         .substring(10, 16) +
