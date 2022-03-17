@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:home/core/constants/color_const.dart';
 import 'package:home/models/news_model.dart';
 import 'package:home/service/apple_api_service.dart';
 
@@ -60,7 +61,7 @@ class _NewsApiConnectionPageState extends State<NewsApiConnectionPage> {
                               ),
                               const SizedBox(width: 10),
                               SizedBox(
-                                height: 140,
+                                height: 148,
                                 width: 232.4,
                                 child: Column(
                                   mainAxisAlignment:
@@ -91,7 +92,11 @@ class _NewsApiConnectionPageState extends State<NewsApiConnectionPage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(widget.newsTabName),
+                                        Text(
+                                          widget.newsTabName,
+                                          style: TextStyle(
+                                              color: ColorConst.color5),
+                                        ),
                                         const CircleAvatar(
                                           radius: 3,
                                           backgroundColor: Colors.grey,

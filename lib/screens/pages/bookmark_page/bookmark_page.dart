@@ -32,7 +32,7 @@ class _BookMarkPageState extends State<BookMarkPage>
           labelColor: Colors.white,
           isScrollable: true,
           indicator: ShapeDecoration(
-            color: ColorConst.color,
+            color: ColorConst.color2,
             shape: UnderlineInputBorder(
               borderRadius: BorderRadius.circular(40),
             ),

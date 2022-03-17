@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable, prefer_is_empty
 import 'package:flutter/material.dart';
+import 'package:home/core/constants/color_const.dart';
 import 'package:home/models/news_model.dart';
 
 class SearchListPage extends StatefulWidget {
@@ -112,7 +113,7 @@ class _SearchListPageState extends State<SearchListPage> {
                                     ),
                                     const SizedBox(width: 10),
                                     SizedBox(
-                                      height: 146,
+                                      height: 148,
                                       width: 232.4,
                                       child: Column(
                                         mainAxisAlignment:
@@ -141,7 +142,11 @@ class _SearchListPageState extends State<SearchListPage> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Text(widget.newsTabName),
+                                              Text(
+                                                widget.newsTabName,
+                                                style: TextStyle(
+                                                    color: ColorConst.color5),
+                                              ),
                                               const CircleAvatar(
                                                 radius: 3,
                                                 backgroundColor: Colors.grey,

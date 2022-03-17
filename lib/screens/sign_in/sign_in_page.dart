@@ -43,17 +43,17 @@ class _SignInPageState extends State<SignInPage> {
                   width: 150,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: ColorConst.color,
+                    color: ColorConst.color2,
                   ),
                   alignment: Alignment.center,
                   child: Text(
                     'Sign up',
-                    style: TextStyle(color: ColorConst.color1),
+                    style: TextStyle(color: ColorConst.color3),
                   ),
                 ),
                 onTap: () {
                   if (nextPage == true) {
-                    Navigator.pushReplacementNamed(context, '/signin');
+                    Navigator.pushReplacementNamed(context, '/');
                   }
                 },
               ),
@@ -136,14 +136,14 @@ class _SignInPageState extends State<SignInPage> {
 
   ok() {
     if (KeyConst.formKey.currentState!.validate()) {
-      ColorConst.color = const Color(0xff180E19);
-      ColorConst.color1 = const Color(0xffEEEEEE);
+      ColorConst.color2 = const Color(0xff180E19);
+      ColorConst.color3 = const Color(0xffEEEEEE);
       setState(() {
         nextPage = true;
       });
     } else {
-      ColorConst.color1 = const Color(0xff180E19);
-      ColorConst.color = const Color(0xffEEEEEE);
+      ColorConst.color3 = const Color(0xff180E19);
+      ColorConst.color2 = const Color(0xffEEEEEE);
       setState(() {});
     }
   }

@@ -4,6 +4,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:home/core/constants/color_const.dart';
 import 'package:home/core/constants/imgs_const.dart';
 import 'package:home/models/news_model.dart';
 import 'package:home/screens/pages/home_news_page/home_list_button_page/home_list_button_page.dart';
@@ -115,7 +116,12 @@ class _NewsApiPageState extends State<NewsApiPage> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Text(widget.newsTabName),
+                                                    Text(
+                                                      widget.newsTabName,
+                                                      style: TextStyle(
+                                                          color: ColorConst
+                                                              .color5),
+                                                    ),
                                                     const CircleAvatar(
                                                       radius: 3,
                                                       backgroundColor:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:home/core/constants/color_const.dart';
 import 'package:home/models/news_model.dart';
 import 'package:home/widgets/others_widget.dart';
@@ -17,7 +18,18 @@ class _HomeListButtonPageState extends State<HomeListButtonPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(actions: const [Text('Icons'), Text('Icons')]),
+      appBar: AppBar(
+        leading: const BackButton(color: Colors.black),
+        backgroundColor: Colors.white,
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: SvgPicture.asset('assets/icons/bookmark_white.svg')),
+          IconButton(
+              onPressed: () {},
+              icon: SvgPicture.asset('assets/icons/share1.svg')),
+        ],
+      ),
       body: Column(
         children: [
           SizedBox(
@@ -58,7 +70,7 @@ class _HomeListButtonPageState extends State<HomeListButtonPage> {
                             maxLines: 1,
                             style: TextStyle(
                               fontSize: 13,
-                              color: ColorConst.color2,
+                              color: ColorConst.color4,
                             ),
                           ),
                         ],
