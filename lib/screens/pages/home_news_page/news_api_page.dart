@@ -47,128 +47,121 @@ class _NewsApiPageState extends State<NewsApiPage> {
               } else if (snap.hasError) {
                 return const Center(child: Text('Error'));
               } else {
-                return SafeArea(
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: ListView.builder(
-                          itemBuilder: (_, __) {
-                            return FadeInLeftBig(
-                              child: Padding(
-                                padding: const EdgeInsets.all(16),
-                                child: Column(
-                                  children: [
-                                    InkWell(
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          SizedBox(
-                                            height: 140,
-                                            width: 137,
-                                            child: FadeInImage.assetNetwork(
-                                              placeholder:
-                                                  'assets/gifs/loading.gif',
-                                              image: snap.data!.articles![__]
-                                                      .urlToImage ??
-                                                  ImgsConst.noImg,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                          const SizedBox(width: 10),
-                                          SizedBox(
-                                            height: 155,
-                                            width: 232.4,
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      snap.data!.articles![__]
-                                                          .title
-                                                          .toString(),
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      maxLines: 4,
-                                                    ),
-                                                    const SizedBox(height: 10),
-                                                    Text(
-                                                      snap.data!.articles![__]
-                                                              .author ??
-                                                          'Dodow',
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      maxLines: 1,
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      widget.newsTabName,
-                                                      style: TextStyle(
-                                                          color: ColorConst
-                                                              .color5),
-                                                    ),
-                                                    const CircleAvatar(
-                                                      radius: 3,
-                                                      backgroundColor:
-                                                          Colors.grey,
-                                                    ),
-                                                    Text(
-                                                      snap.data!.articles![__]
-                                                              .publishedAt!
-                                                              .toString()
-                                                              .substring(
-                                                                  10, 16) +
-                                                          'hr ago',
-                                                    ),
-                                                    IconButton(
-                                                      icon: const Icon(
-                                                        Icons.more_horiz,
-                                                      ),
-                                                      onPressed: () {},
-                                                    )
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                          context,
-                                          '/list_home',
-                                          arguments: [
-                                            snap.data!.articles![__],
-                                            widget.newsTabName,
-                                          ],
-                                        );
-                                      },
+                return ListView.builder(
+                  itemBuilder: (_, __) {
+                    return FadeInLeftBig(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          children: [
+                            InkWell(
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                    height: 140,
+                                    width: 137,
+                                    child: FadeInImage.assetNetwork(
+                                      placeholder: 'assets/gifs/loading.gif',
+                                      image:
+                                          snap.data!.articles![__].urlToImage ??
+                                              ImgsConst.noImg,
+                                      fit: BoxFit.cover,
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  SizedBox(
+                                    height: 155,
+                                    width: 232.4,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              snap.data!.articles![__].title
+                                                  .toString(),
+                                              textAlign: TextAlign.start,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 4,
+                                            ),
+                                            const SizedBox(height: 10),
+                                            Text(
+                                              snap.data!.articles![__].author ??
+                                                  'Dodow',
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              widget.newsTabName,
+                                              style: TextStyle(
+                                                  color: ColorConst.color5),
+                                            ),
+                                            const CircleAvatar(
+                                              radius: 3,
+                                              backgroundColor: Colors.grey,
+                                            ),
+                                            Text(
+                                              snap.data!.articles![__]
+                                                      .publishedAt!
+                                                      .toString()
+                                                      .substring(10, 16) +
+                                                  'hr ago',
+                                            ),
+                                            PopupMenuButton(
+                                              itemBuilder: (_) {
+                                                return const <
+                                                    PopupMenuItem<String>>[
+                                                  PopupMenuItem<String>(
+                                                      child: Text('Doge'),
+                                                      value: 'Doge'),
+                                                  PopupMenuItem<String>(
+                                                      child: Text('Lion'),
+                                                      value: 'Lion'),
+                                                ];
+                                              },
+                                              onSelected: (_) {},
+                                            ),
+                                            IconButton(
+                                              icon: const Icon(
+                                                Icons.more_horiz,
+                                              ),
+                                              onPressed: () {},
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
-                            );
-                          },
-                          itemCount: snap.data!.articles!.length,
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  '/list_home',
+                                  arguments: [
+                                    snap.data!.articles![__],
+                                  ],
+                                );
+                              },
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
+                    );
+                  },
+                  itemCount: snap.data!.articles!.length,
                 );
               }
             },

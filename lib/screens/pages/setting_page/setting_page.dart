@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:home/widgets/setting_button_widget.dart';
-import 'package:home/widgets/setting_dark_button_widget.dart';
+import 'package:home/core/widgets/setting_button_widget.dart';
+import 'package:home/core/widgets/setting_dark_button_widget.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);

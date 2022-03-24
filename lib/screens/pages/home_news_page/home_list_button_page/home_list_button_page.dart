@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:home/core/constants/color_const.dart';
+import 'package:home/core/widgets/others_widget.dart';
 import 'package:home/models/news_model.dart';
-import 'package:home/widgets/others_widget.dart';
 
 class HomeListButtonPage extends StatefulWidget {
   Article data;
-  String newsTabName;
-  HomeListButtonPage({required this.newsTabName, required this.data, Key? key})
-      : super(key: key);
+  HomeListButtonPage({required this.data, Key? key}) : super(key: key);
 
   @override
   State<HomeListButtonPage> createState() => _HomeListButtonPageState();

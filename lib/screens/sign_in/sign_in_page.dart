@@ -1,6 +1,8 @@
 // ignore_for_file: body_might_complete_normally_nullable
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:home/core/components/divider.dart';
+import 'package:home/core/components/sign_in_icons.dart';
 import 'package:home/core/constants/color_const.dart';
 import 'package:home/core/constants/keys_const.dart';
 import 'package:home/core/constants/text_contreoller_const.dart';
@@ -60,19 +62,19 @@ class _SignInPageState extends State<SignInPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  divider(),
+                  Dividers.divider(),
                   const Text('or sign in with'),
-                  divider(),
+                  Dividers.divider(),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  signInIcons(),
-                  signInIcons(),
-                  signInIcons(),
-                  signInIcons(),
-                  signInIcons(),
+                  SignInIcons.signInIcons(),
+                  SignInIcons.signInIcons(),
+                  SignInIcons.signInIcons(),
+                  SignInIcons.signInIcons(),
+                  SignInIcons.signInIcons(),
                 ],
               ),
               SizedBox(
@@ -98,16 +100,6 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
-  SizedBox divider() {
-    return const SizedBox(
-      width: 96,
-      child: Divider(
-        thickness: 1,
-        color: Colors.black,
-      ),
-    );
-  }
-
   TextFormField textFormField(String text, TextEditingController controller) {
     return TextFormField(
       controller: controller,
@@ -120,17 +112,6 @@ class _SignInPageState extends State<SignInPage> {
           return "Bo'sh kiritish mumkin emas";
         }
       },
-    );
-  }
-
-  Container signInIcons() {
-    return Container(
-      height: 40,
-      width: 43,
-      decoration: BoxDecoration(
-        border: Border.all(color: const Color(0xff180E19), width: 1.5),
-        borderRadius: BorderRadius.circular(5),
-      ),
     );
   }
 

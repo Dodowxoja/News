@@ -21,7 +21,6 @@ class MyRoute {
         return MaterialPageRoute(
           builder: (_) => HomeListButtonPage(
             data: (args as List)[0] as Article,
-            newsTabName: (args as List)[1].toString(),
           ),
         );
       case '/setting_profile':
